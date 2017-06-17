@@ -53,10 +53,8 @@ namespace LogisuiteEmployeesService
         public int Delete(int id)
         {
 
-            var result = _context.DeleteValue(id);
-            _context.SaveChanges();
+            return _context.DeleteValue(id);
 
-            return result;
         }
 
         [WebMethod(Description = "Select an Employee from the data base")]

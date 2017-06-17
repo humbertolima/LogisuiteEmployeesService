@@ -123,7 +123,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             {
                 MessageBox.Show(@"The Annual Salary field must be a valid numerical type", @"Invalid Field",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAnnualSalary.Text = _employee.AnnualSalary.ToString("C");
+                txtAnnualSalary.Text = _employee.AnnualSalary.ToString("N");
                 txtAnnualSalary.Focus();
             }
         }

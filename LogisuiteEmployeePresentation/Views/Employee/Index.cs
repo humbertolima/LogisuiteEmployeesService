@@ -22,11 +22,6 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             
         }
         
-        private void HideRowId()
-        {
-            IndexDataGridView.Columns[0].Visible = false;
-        }
-
         private void DecorateTheGridView()
         {
             IndexDataGridView.Columns[2].HeaderText = @"Last Name";
@@ -41,8 +36,6 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         public void Initialize()
         {
             this.IndexDataGridView.DataSource = EmployeesController.ViewAll();
-
-            HideRowId();
             DecorateTheGridView();
         }
         private void Index_Load(object sender, EventArgs e)
