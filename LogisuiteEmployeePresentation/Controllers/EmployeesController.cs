@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LogisuiteEmployeePresentation.LogisuiteEmployeeService;
+using System.Web.ModelBinding;
 
 namespace LogisuiteEmployeePresentation.Controllers
 {
@@ -22,9 +23,10 @@ namespace LogisuiteEmployeePresentation.Controllers
             return Client.Select(id);
         }
 
-        public static void Save(Employee value)
+        public static string Save(Employee value, out bool test)
         {
-            Client.Save(value);
+            return Client.Save(value, out test );
+
         }
 
         public static int Delete(int id)

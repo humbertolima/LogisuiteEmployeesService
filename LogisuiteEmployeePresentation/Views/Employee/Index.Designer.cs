@@ -59,6 +59,7 @@
             this.IndexDataGridView.RowTemplate.Height = 24;
             this.IndexDataGridView.Size = new System.Drawing.Size(1012, 142);
             this.IndexDataGridView.TabIndex = 0;
+            this.IndexDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IndexDataGridView_CellContentClick);
             this.IndexDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.IndexDataGridView_CellMouseDoubleClick);
             // 
             // btnRegister

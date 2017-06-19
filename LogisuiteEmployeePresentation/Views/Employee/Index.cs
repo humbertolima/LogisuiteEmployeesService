@@ -83,28 +83,24 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         {
             var employeeForm = new EmployeeForm();
             employeeForm.ShowDialog();
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                var idToDelete= (int) (IndexDataGridView.SelectedCells[0].Value);
                 if (MessageBox.Show( @"Sure you want to delete this register?", @"Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    var result = EmployeesController.Delete((int) IndexDataGridView.SelectedCells[0].Value);
-                    if (result == 1)
-                    {
-                        MessageBox.Show(@"Was successfully deleted");
-                        Index_Load(sender, e);
-                    }
-                    else
-                    {
-                        MessageBox.Show(@"The employee is not regitered");
-                        Index_Load(sender, e);
-                    }
-                    
+                    var result = EmployeesController.Delete(idToDelete);
+                    Index_Load(sender, e);
+                    MessageBox.Show(result == 1 
 
+                        ? @"The register successfully deleted" 
+                        : @"The employee is not regitered");
                 }
+                
             }
             catch (Exception ex)
             {
@@ -122,6 +118,11 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         private void Index_Activated(object sender, EventArgs e)
         {
             Initialize();
+        }
+
+        private void IndexDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -27,26 +27,46 @@ namespace LogisuiteEmployeesService
         }
 
         [WebMethod(Description = "Insert or Update an employee's properties")]
-        public void Save(Employee value)
+        public string Save(Employee value, out bool test)
         {
             
-            if (value.Id == 0)
+            var result = "The employee was saved successfully";
+            if (_context.Employees.SingleOrDefault(x => x.SocialSecurityNumber == value.SocialSecurityNumber) !=
+                null)
             {
-                _context.Employees.Add(value);
+                result = "There is already and employee with the same social security number";
+                test = false;
+            }
+            else if (_context.Employees.SingleOrDefault(x => x.Phone == value.Phone) != null)
+            {
+                result = "There is already and employee with the same phone number";
+                test = false;
+            }
+            else if (value.Id == 0)
+            {
+                _context.InsertValue(value.Name, value.LastName, value.AnnualSalary, value.Address, value.Phone,
+                    value.SocialSecurityNumber);
+                test = true;
             }
             else
             {
-                var employeeToEdit = _context.Employees.Single(v => v.Id == value.Id);
-                employeeToEdit.Name = value.Name;
-                employeeToEdit.LastName = value.LastName;
-                employeeToEdit.Address = value.Address;
-                employeeToEdit.DateofBirth = value.DateofBirth;
-                employeeToEdit.AnnualSalary = value.AnnualSalary;
-                employeeToEdit.Phone = value.Phone;
-                employeeToEdit.SocialSecurityNumber = value.SocialSecurityNumber;
-            }
-           _context.SaveChanges();
+                //var employeeToEdit = _context.Employees.Single(v => v.Id == value.Id);
+                //employeeToEdit.Name = value.Name;
+                //employeeToEdit.LastName = value.LastName;
+                //employeeToEdit.Address = value.Address;
+                //employeeToEdit.DateofBirth = value.DateofBirth;
+                //employeeToEdit.AnnualSalary = value.AnnualSalary;
+                //employeeToEdit.Phone = value.Phone;
+                //employeeToEdit.SocialSecurityNumber = value.SocialSecurityNumber;
 
+                _context.UpdateValue(value.Id, value.Name, value.LastName, value.AnnualSalary, value.Address,
+                    value.Phone, value.SocialSecurityNumber);
+                test = true;
+
+
+            }
+            _context.SaveChanges();
+            return result;
         }
 
         [WebMethod(Description = "Delete an employee from the data base")]

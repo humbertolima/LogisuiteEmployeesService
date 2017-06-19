@@ -176,7 +176,6 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/ViewAll", ReplyAction="*")]
         System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.ViewAllResponse> ViewAllAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.ViewAllRequest request);
         
-        // CODEGEN: Generating message contract since element name value from namespace http://logisuite/employees/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Save", ReplyAction="*")]
         LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse Save(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest request);
         
@@ -260,7 +259,6 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class SaveRequest {
         
@@ -277,7 +275,6 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
     public partial class SaveRequestBody {
         
@@ -294,7 +291,6 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class SaveResponse {
         
@@ -311,11 +307,21 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
     public partial class SaveResponseBody {
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string SaveResult;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public bool test;
+        
         public SaveResponseBody() {
+        }
+        
+        public SaveResponseBody(string SaveResult, bool test) {
+            this.SaveResult = SaveResult;
+            this.test = test;
         }
     }
     
@@ -442,11 +448,13 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
             return base.Channel.Save(request);
         }
         
-        public void Save(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
+        public string Save(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value, out bool test) {
             LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest();
             inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequestBody();
             inValue.Body.value = value;
             LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse retVal = ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).Save(inValue);
+            test = retVal.Body.test;
+            return retVal.Body.SaveResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

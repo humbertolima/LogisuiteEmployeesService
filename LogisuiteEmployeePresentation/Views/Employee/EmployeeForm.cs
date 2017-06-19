@@ -84,6 +84,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         private void Details_Load(object sender, EventArgs e)
         {
             InitializeForm();
+           
         }
 
         
@@ -106,7 +107,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
                 txtDateofBirth.Text = _employee.DateofBirth.ToString("d MMM yyyy");
                 txtDateofBirth.Focus();
             }
-            if (!IsDateofBirthValid(DateTime.Parse(txtDateofBirth.Text)))
+            else if (!IsDateofBirthValid(DateTime.Parse(txtDateofBirth.Text)))
             {
                 MessageBox.Show(@"The Employee must be over 18 years old", @"Invalid Field",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -139,7 +140,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
                 txtPhone.Text = _employee.Phone.ToString();
                 txtPhone.Focus();
             }
-            if (!IsValidPhone(txtPhone.Text))
+            else if (!IsValidPhone(txtPhone.Text))
             {
                 MessageBox.Show(@"The Phone Number field must be 10 digits", @"Invalid Field",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -160,7 +161,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
                 txtSocialSecurity.Text = _employee.SocialSecurityNumber.ToString();
                 txtSocialSecurity.Focus();
             }
-            if (!IsValidSocial(txtSocialSecurity.Text))
+            else if (!IsValidSocial(txtSocialSecurity.Text))
             {
                 MessageBox.Show(@"The Social Security field must be 9 digits", @"Invalid Field",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -175,15 +176,18 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             try
             {
                 BuildEmployee();
-                EmployeesController.Save(_employee);
-                this.Close();
-                
-                
+                bool test;
+                MessageBox.Show(EmployeesController.Save(_employee, out test));
+                if(test)
+                    Close();
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(@"Please fill all the fields");
             }
+            
 
         }
     }

@@ -29,9 +29,9 @@ namespace LogisuiteEmployeesService.Model
     
         public virtual DbSet<Employee> Employees { get; set; }
     
-        public virtual int DeleteValue(Nullable<int> id)
+        public virtual int DeleteValue(int id)
         {
-            var idParameter = id.HasValue ?
+            var idParameter = id != 0?
                 new ObjectParameter("Id", id) :
                 new ObjectParameter("Id", typeof(int));
     
