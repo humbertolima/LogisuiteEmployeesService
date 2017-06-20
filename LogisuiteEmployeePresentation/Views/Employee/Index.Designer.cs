@@ -32,6 +32,9 @@
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.IndexDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +60,7 @@
             this.IndexDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.White;
             this.IndexDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.RoyalBlue;
             this.IndexDataGridView.RowTemplate.Height = 24;
-            this.IndexDataGridView.Size = new System.Drawing.Size(1012, 142);
+            this.IndexDataGridView.Size = new System.Drawing.Size(1012, 354);
             this.IndexDataGridView.TabIndex = 0;
             this.IndexDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IndexDataGridView_CellContentClick);
             this.IndexDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.IndexDataGridView_CellMouseDoubleClick);
@@ -70,7 +73,7 @@
             this.btnRegister.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegister.Location = new System.Drawing.Point(57, 60);
+            this.btnRegister.Location = new System.Drawing.Point(57, 83);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(163, 37);
             this.btnRegister.TabIndex = 1;
@@ -86,7 +89,7 @@
             this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(283, 60);
+            this.btnDelete.Location = new System.Drawing.Point(283, 83);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(163, 37);
             this.btnDelete.TabIndex = 3;
@@ -97,13 +100,50 @@
             // groupBox1
             // 
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnDelete);
+            this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.Controls.Add(this.btnRegister);
-            this.groupBox1.Location = new System.Drawing.Point(23, 225);
+            this.groupBox1.Location = new System.Drawing.Point(23, 360);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(511, 118);
+            this.groupBox1.Size = new System.Drawing.Size(982, 135);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.LightBlue;
+            this.label2.Location = new System.Drawing.Point(494, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(146, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Search an employee";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearch.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
+            this.txtSearch.Location = new System.Drawing.Point(659, 83);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(302, 28);
+            this.txtSearch.TabIndex = 5;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.LightBlue;
+            this.label3.Location = new System.Drawing.Point(659, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(2, 22);
+            this.label3.TabIndex = 8;
             // 
             // Index
             // 
@@ -113,16 +153,18 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1017, 349);
+            this.ClientSize = new System.Drawing.Size(1017, 507);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.IndexDataGridView);
             this.Name = "Index";
             this.Text = "List of Employees";
             this.Activated += new System.EventHandler(this.Index_Activated);
             this.Load += new System.EventHandler(this.Index_Load);
+            this.ResizeEnd += new System.EventHandler(this.Index_ResizeEnd);
             this.Enter += new System.EventHandler(this.Index_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.IndexDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -133,5 +175,8 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label3;
     }
 }

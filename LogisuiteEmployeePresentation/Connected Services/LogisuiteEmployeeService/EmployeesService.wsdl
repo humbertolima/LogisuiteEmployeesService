@@ -87,6 +87,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Search">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchResult" type="tns:ArrayOfEmployee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ViewAllSoapIn">
@@ -119,6 +133,12 @@
   <wsdl:message name="SelectSoapOut">
     <wsdl:part name="parameters" element="tns:SelectResponse" />
   </wsdl:message>
+  <wsdl:message name="SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
   <wsdl:portType name="EmployeesServiceSoap">
     <wsdl:operation name="ViewAll">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View the list of all employees from the data base</wsdl:documentation>
@@ -144,6 +164,10 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Select an Employee from the data base</wsdl:documentation>
       <wsdl:input message="tns:SelectSoapIn" />
       <wsdl:output message="tns:SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchSoapIn" />
+      <wsdl:output message="tns:SearchSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EmployeesServiceSoap" type="tns:EmployeesServiceSoap">
@@ -193,6 +217,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://logisuite/employees/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="EmployeesServiceSoap12" type="tns:EmployeesServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -234,6 +267,15 @@
     </wsdl:operation>
     <wsdl:operation name="Select">
       <soap12:operation soapAction="http://logisuite/employees/Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://logisuite/employees/Search" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

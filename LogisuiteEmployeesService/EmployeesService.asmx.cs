@@ -92,5 +92,11 @@ namespace LogisuiteEmployeesService
         {
             return _context.Employees.SingleOrDefault(v => v.Id == id);
         }
+
+        [WebMethod]
+        public List<Employee> Search(string value)
+        {
+            return _context.Employees.Where(x => x.Name.Contains(value) || x.LastName.Contains(value) || x.Address.Contains(value)).ToList();
+        }
     }
 }

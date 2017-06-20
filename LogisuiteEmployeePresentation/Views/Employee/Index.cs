@@ -41,7 +41,8 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         private void Index_Load(object sender, EventArgs e)
         {
             
-           Initialize();
+            Initialize();
+            label3.Text = @"Total de Registros: " + IndexDataGridView.Rows.Count;
         }
 
         private void IndexDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -123,6 +124,17 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         private void IndexDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            this.IndexDataGridView.DataSource = EmployeesController.SearchByName(txtSearch.Text);
+            DecorateTheGridView();
+        }
+
+        private void Index_ResizeEnd(object sender, EventArgs e)
+        {
+            
         }
     }
 }

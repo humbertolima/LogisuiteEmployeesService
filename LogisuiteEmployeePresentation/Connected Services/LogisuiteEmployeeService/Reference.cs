@@ -200,6 +200,13 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Select", ReplyAction="*")]
         System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SelectResponse> SelectAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SelectRequest request);
+        
+        // CODEGEN: Generating message contract since element name value from namespace http://logisuite/employees/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Search", ReplyAction="*")]
+        LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponse Search(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Search", ReplyAction="*")]
+        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponse> SearchAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -467,6 +474,74 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SearchRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="Search", Namespace="http://logisuite/employees/", Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequestBody Body;
+        
+        public SearchRequest() {
+        }
+        
+        public SearchRequest(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
+    public partial class SearchRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string value;
+        
+        public SearchRequestBody() {
+        }
+        
+        public SearchRequestBody(string value) {
+            this.value = value;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SearchResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SearchResponse", Namespace="http://logisuite/employees/", Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponseBody Body;
+        
+        public SearchResponse() {
+        }
+        
+        public SearchResponse(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
+    public partial class SearchResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee[] SearchResult;
+        
+        public SearchResponseBody() {
+        }
+        
+        public SearchResponseBody(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee[] SearchResult) {
+            this.SearchResult = SearchResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface EmployeesServiceSoapChannel : LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -600,6 +675,31 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
             inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SelectRequestBody();
             inValue.Body.id = id;
             return ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).SelectAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponse LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.Search(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest request) {
+            return base.Channel.Search(request);
+        }
+        
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee[] Search(string value) {
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest();
+            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequestBody();
+            inValue.Body.value = value;
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponse retVal = ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).Search(inValue);
+            return retVal.Body.SearchResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponse> LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.SearchAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest request) {
+            return base.Channel.SearchAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchResponse> SearchAsync(string value) {
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequest();
+            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SearchRequestBody();
+            inValue.Body.value = value;
+            return ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).SearchAsync(inValue);
         }
     }
 }
