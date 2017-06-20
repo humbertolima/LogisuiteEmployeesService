@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +14,10 @@ namespace LogisuiteEmployeePresentation.Views.Employee
 {
     public partial class EmployeeForm : Form
     {
-        private LogisuiteEmployeeService.Employee _employee;
+        private readonly LogisuiteEmployeeService.Employee _employee;
         public EmployeeForm()
         {
+            _employee = new LogisuiteEmployeeService.Employee();
             InitializeComponent();
         }
 
@@ -27,12 +29,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
 
         private void InitializeForm()
         {
-            if (_employee == null)
-            {
-                _employee = new LogisuiteEmployeeService.Employee();
-            }
-            else
-            {
+            
                 txtName.Text = _employee.Name;
                 txtLastName.Text = _employee.LastName;
                 txtAddress.Text = _employee.Address;
@@ -40,7 +37,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
                 txtPhone.Text = _employee.Phone.ToString();
                 txtSocialSecurity.Text = _employee.SocialSecurityNumber.ToString();
                 txtDateofBirth.Text = _employee.DateofBirth.ToString("d MMM yyyy");
-            }
+           
         }
 
         private bool IsFormValid()
@@ -70,15 +67,22 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             return (DateTime.Now.Year - value.Year) > 18;
         }
 
-        private void BuildEmployee()
+        private LogisuiteEmployeeService.Employee BuildEmployee()
         {
-            _employee.Name = txtName.Text;
-            _employee.LastName = txtLastName.Text;
-            _employee.Address = txtAddress.Text;
-            _employee.AnnualSalary = decimal.Parse(txtAnnualSalary.Text);
-            _employee.DateofBirth = DateTime.Parse(txtDateofBirth.Text);
-            _employee.SocialSecurityNumber = long.Parse(txtSocialSecurity.Text);
-            _employee.Phone = long.Parse(txtPhone.Text);
+           
+                return new LogisuiteEmployeeService.Employee()
+                    {
+                        Id = _employee.Id,
+                        Name = txtName.Text,
+                        LastName = txtLastName.Text,
+                        Address = txtAddress.Text,
+                        AnnualSalary = decimal.Parse(txtAnnualSalary.Text),
+                        DateofBirth = DateTime.Parse(txtDateofBirth.Text),
+                        SocialSecurityNumber = long.Parse(txtSocialSecurity.Text),
+                        Phone = long.Parse(txtPhone.Text)
+                    }
+                    ;
+            
         }
 
         private void Details_Load(object sender, EventArgs e)
@@ -135,7 +139,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             var result = long.TryParse(txtPhone.Text, out pnone);
             if (!result)
             {
-                MessageBox.Show(@"The Annual Salary field must be a valid numerical type", @"Invalid Field",
+                MessageBox.Show(@"The Phone Number field must be a valid numerical type", @"Invalid Field",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPhone.Text = _employee.Phone.ToString();
                 txtPhone.Focus();
@@ -175,10 +179,10 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         {
             try
             {
-                BuildEmployee();
-                bool test;
-                MessageBox.Show(EmployeesController.Save(_employee, out test));
-                if(test)
+                bool result;
+                var test = BuildEmployee();
+                MessageBox.Show(EmployeesController.Save(test, out result));
+                if(result)
                     Close();
 
 

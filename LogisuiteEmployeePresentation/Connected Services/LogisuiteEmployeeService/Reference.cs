@@ -176,11 +176,17 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/ViewAll", ReplyAction="*")]
         System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.ViewAllResponse> ViewAllAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.ViewAllRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Save", ReplyAction="*")]
-        LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse Save(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Update", ReplyAction="*")]
+        LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse Update(LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Save", ReplyAction="*")]
-        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse> SaveAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Update", ReplyAction="*")]
+        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse> UpdateAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Insert", ReplyAction="*")]
+        LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse Insert(LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Insert", ReplyAction="*")]
+        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse> InsertAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://logisuite/employees/Delete", ReplyAction="*")]
         int Delete(int id);
@@ -260,15 +266,15 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SaveRequest {
+    public partial class UpdateRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="Save", Namespace="http://logisuite/employees/", Order=0)]
-        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="Update", Namespace="http://logisuite/employees/", Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequestBody Body;
         
-        public SaveRequest() {
+        public UpdateRequest() {
         }
         
-        public SaveRequest(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequestBody Body) {
+        public UpdateRequest(LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -276,15 +282,15 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
-    public partial class SaveRequestBody {
+    public partial class UpdateRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value;
         
-        public SaveRequestBody() {
+        public UpdateRequestBody() {
         }
         
-        public SaveRequestBody(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
+        public UpdateRequestBody(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
             this.value = value;
         }
     }
@@ -292,15 +298,15 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SaveResponse {
+    public partial class UpdateResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SaveResponse", Namespace="http://logisuite/employees/", Order=0)]
-        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateResponse", Namespace="http://logisuite/employees/", Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponseBody Body;
         
-        public SaveResponse() {
+        public UpdateResponse() {
         }
         
-        public SaveResponse(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponseBody Body) {
+        public UpdateResponse(LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -308,20 +314,88 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
-    public partial class SaveResponseBody {
+    public partial class UpdateResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string SaveResult;
+        public string UpdateResult;
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-        public bool test;
+        public bool result;
         
-        public SaveResponseBody() {
+        public UpdateResponseBody() {
         }
         
-        public SaveResponseBody(string SaveResult, bool test) {
-            this.SaveResult = SaveResult;
-            this.test = test;
+        public UpdateResponseBody(string UpdateResult, bool result) {
+            this.UpdateResult = UpdateResult;
+            this.result = result;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class InsertRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="Insert", Namespace="http://logisuite/employees/", Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequestBody Body;
+        
+        public InsertRequest() {
+        }
+        
+        public InsertRequest(LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
+    public partial class InsertRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value;
+        
+        public InsertRequestBody() {
+        }
+        
+        public InsertRequestBody(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
+            this.value = value;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class InsertResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="InsertResponse", Namespace="http://logisuite/employees/", Order=0)]
+        public LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponseBody Body;
+        
+        public InsertResponse() {
+        }
+        
+        public InsertResponse(LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://logisuite/employees/")]
+    public partial class InsertResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string InsertResult;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public bool result;
+        
+        public InsertResponseBody() {
+        }
+        
+        public InsertResponseBody(string InsertResult, bool result) {
+            this.InsertResult = InsertResult;
+            this.result = result;
         }
     }
     
@@ -444,29 +518,55 @@ namespace LogisuiteEmployeePresentation.LogisuiteEmployeeService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.Save(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest request) {
-            return base.Channel.Save(request);
+        LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.Update(LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest request) {
+            return base.Channel.Update(request);
         }
         
-        public string Save(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value, out bool test) {
-            LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest();
-            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequestBody();
+        public string Update(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value, out bool result) {
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest();
+            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequestBody();
             inValue.Body.value = value;
-            LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse retVal = ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).Save(inValue);
-            test = retVal.Body.test;
-            return retVal.Body.SaveResult;
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse retVal = ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).Update(inValue);
+            result = retVal.Body.result;
+            return retVal.Body.UpdateResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse> LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.SaveAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest request) {
-            return base.Channel.SaveAsync(request);
+        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse> LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.UpdateAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest request) {
+            return base.Channel.UpdateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse> SaveAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
-            LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequest();
-            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveRequestBody();
+        public System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse> UpdateAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequest();
+            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateRequestBody();
             inValue.Body.value = value;
-            return ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).SaveAsync(inValue);
+            return ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).UpdateAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.Insert(LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest request) {
+            return base.Channel.Insert(request);
+        }
+        
+        public string Insert(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value, out bool result) {
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest();
+            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequestBody();
+            inValue.Body.value = value;
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse retVal = ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).Insert(inValue);
+            result = retVal.Body.result;
+            return retVal.Body.InsertResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse> LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap.InsertAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest request) {
+            return base.Channel.InsertAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse> InsertAsync(LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee value) {
+            LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest inValue = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequest();
+            inValue.Body = new LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertRequestBody();
+            inValue.Body.value = value;
+            return ((LogisuiteEmployeePresentation.LogisuiteEmployeeService.EmployeesServiceSoap)(this)).InsertAsync(inValue);
         }
         
         public int Delete(int id) {

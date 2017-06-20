@@ -23,12 +23,11 @@ namespace LogisuiteEmployeePresentation.Controllers
             return Client.Select(id);
         }
 
-        public static string Save(Employee value, out bool test)
+        public static string Save(Employee value, out bool result)
         {
-            return Client.Save(value, out test );
-
+            return value.Id == 0 ? Client.Insert(value, out result) : Client.Update(value, out result);
         }
-
+        
         public static int Delete(int id)
         {
             return Client.Delete(id);

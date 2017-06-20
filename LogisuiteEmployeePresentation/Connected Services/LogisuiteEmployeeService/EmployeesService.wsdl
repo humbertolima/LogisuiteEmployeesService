@@ -29,18 +29,33 @@
           <s:element minOccurs="1" maxOccurs="1" name="SocialSecurityNumber" type="s:long" />
         </s:sequence>
       </s:complexType>
-      <s:element name="Save">
+      <s:element name="Update">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="value" type="tns:Employee" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SaveResponse">
+      <s:element name="UpdateResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SaveResult" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="test" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="tns:Employee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="result" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -80,11 +95,17 @@
   <wsdl:message name="ViewAllSoapOut">
     <wsdl:part name="parameters" element="tns:ViewAllResponse" />
   </wsdl:message>
-  <wsdl:message name="SaveSoapIn">
-    <wsdl:part name="parameters" element="tns:Save" />
+  <wsdl:message name="UpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:Update" />
   </wsdl:message>
-  <wsdl:message name="SaveSoapOut">
-    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  <wsdl:message name="UpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert" />
+  </wsdl:message>
+  <wsdl:message name="InsertSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertResponse" />
   </wsdl:message>
   <wsdl:message name="DeleteSoapIn">
     <wsdl:part name="parameters" element="tns:Delete" />
@@ -104,10 +125,15 @@
       <wsdl:input message="tns:ViewAllSoapIn" />
       <wsdl:output message="tns:ViewAllSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Save">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert or Update an employee's properties</wsdl:documentation>
-      <wsdl:input message="tns:SaveSoapIn" />
-      <wsdl:output message="tns:SaveSoapOut" />
+    <wsdl:operation name="Update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update an employee</wsdl:documentation>
+      <wsdl:input message="tns:UpdateSoapIn" />
+      <wsdl:output message="tns:UpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert an employee to the data base</wsdl:documentation>
+      <wsdl:input message="tns:InsertSoapIn" />
+      <wsdl:output message="tns:InsertSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Delete">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete an employee from the data base</wsdl:documentation>
@@ -131,8 +157,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Save">
-      <soap:operation soapAction="http://logisuite/employees/Save" style="document" />
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://logisuite/employees/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <soap:operation soapAction="http://logisuite/employees/Insert" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -170,8 +205,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Save">
-      <soap12:operation soapAction="http://logisuite/employees/Save" style="document" />
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://logisuite/employees/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <soap12:operation soapAction="http://logisuite/employees/Insert" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

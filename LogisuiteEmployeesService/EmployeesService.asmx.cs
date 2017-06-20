@@ -20,53 +20,63 @@ namespace LogisuiteEmployeesService
     public class EmployeesService : System.Web.Services.WebService
     {
         private readonly LogisuiteEntities _context = new LogisuiteEntities();
+
+        private string CheckPhoneAndSocialSecNumbers(Employee value, out bool result)
+        {
+            var response = "The employee was saved successfully";
+            result = true;
+            foreach (var item in _context.Employees)
+            {
+                if (item.Id == value.Id) continue;
+                if (item.Phone == value.Phone)
+                {
+                    response = "There is an employee with the same phone number";
+                    result = false;
+                }
+                if (item.SocialSecurityNumber != value.SocialSecurityNumber) continue;
+                response = "There is an employee with the same social security number";
+                result = false;
+            }
+
+
+            return response;
+        }
+
         [WebMethod(Description = "View the list of all employees from the data base")]
         public List<Employee> ViewAll()
         {
             return _context.Employees.ToList();
         }
 
-        [WebMethod(Description = "Insert or Update an employee's properties")]
-        public string Save(Employee value, out bool test)
+        [WebMethod(Description = "Update an employee")]
+        public string Update(Employee value, out bool result)
         {
-            
-            var result = "The employee was saved successfully";
-            if (_context.Employees.SingleOrDefault(x => x.SocialSecurityNumber == value.SocialSecurityNumber) !=
-                null)
-            {
-                result = "There is already and employee with the same social security number";
-                test = false;
-            }
-            else if (_context.Employees.SingleOrDefault(x => x.Phone == value.Phone) != null)
-            {
-                result = "There is already and employee with the same phone number";
-                test = false;
-            }
-            else if (value.Id == 0)
-            {
-                _context.InsertValue(value.Name, value.LastName, value.AnnualSalary, value.Address, value.Phone,
-                    value.SocialSecurityNumber);
-                test = true;
-            }
-            else
-            {
-                //var employeeToEdit = _context.Employees.Single(v => v.Id == value.Id);
-                //employeeToEdit.Name = value.Name;
-                //employeeToEdit.LastName = value.LastName;
-                //employeeToEdit.Address = value.Address;
-                //employeeToEdit.DateofBirth = value.DateofBirth;
-                //employeeToEdit.AnnualSalary = value.AnnualSalary;
-                //employeeToEdit.Phone = value.Phone;
-                //employeeToEdit.SocialSecurityNumber = value.SocialSecurityNumber;
-
-                _context.UpdateValue(value.Id, value.Name, value.LastName, value.AnnualSalary, value.Address,
-                    value.Phone, value.SocialSecurityNumber);
-                test = true;
+            result = false;
+            var response = CheckPhoneAndSocialSecNumbers(value, out bool test);
+            if (!test) return response;
+            _context.UpdateValue(value.Id, value.Name, value.LastName, value.DateofBirth, value.AnnualSalary, value.Address,
+                value.Phone,
+                value.SocialSecurityNumber);
+            result = true;
 
 
-            }
-            _context.SaveChanges();
-            return result;
+            return response;
+        }
+
+        [WebMethod(Description = "Insert an employee to the data base")]
+        public string  Insert(Employee value, out bool result)
+        {
+
+            result = false;
+            var response = CheckPhoneAndSocialSecNumbers(value, out bool test);
+            if (!test) return response;
+            _context.InsertValue(value.Name, value.LastName, value.DateofBirth, value.AnnualSalary, value.Address,
+                value.Phone,
+                value.SocialSecurityNumber);
+            result = true;
+
+
+            return response;
         }
 
         [WebMethod(Description = "Delete an employee from the data base")]

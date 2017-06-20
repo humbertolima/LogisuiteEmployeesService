@@ -96,10 +96,13 @@
     <None Include="Connected Services\LogisuiteEmployeeService\LogisuiteEmployeePresentation.LogisuiteEmployeeService.Employee.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\LogisuiteEmployeeService\LogisuiteEmployeePresentation.LogisuiteEmployeeService.SaveResponse.datasource">
+    <None Include="Connected Services\LogisuiteEmployeeService\LogisuiteEmployeePresentation.LogisuiteEmployeeService.InsertResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LogisuiteEmployeeService\LogisuiteEmployeePresentation.LogisuiteEmployeeService.SelectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LogisuiteEmployeeService\LogisuiteEmployeePresentation.LogisuiteEmployeeService.UpdateResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LogisuiteEmployeeService\LogisuiteEmployeePresentation.LogisuiteEmployeeService.ViewAllResponse.datasource">

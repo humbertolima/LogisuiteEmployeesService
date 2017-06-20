@@ -107,6 +107,12 @@
     <Compile Include="Model\SelectValue_Result.cs">
       <DependentUpon>LogisuiteEmployeeDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>LogisuiteEmployeeDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagrams_Result.cs">
+      <DependentUpon>LogisuiteEmployeeDataBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ViewAll_Result.cs">
       <DependentUpon>LogisuiteEmployeeDataBase.tt</DependentUpon>
     </Compile>
