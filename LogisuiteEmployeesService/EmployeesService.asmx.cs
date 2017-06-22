@@ -63,7 +63,7 @@ namespace LogisuiteEmployeesService
             return response;
         }
 
-        [WebMethod(Description = "Insert an employee to the data base")]
+        [WebMethod(Description = "Insert an employee into the data base")]
         public string  Insert(Employee value, out bool result)
         {
 
@@ -93,7 +93,7 @@ namespace LogisuiteEmployeesService
             return _context.Employees.SingleOrDefault(v => v.Id == id);
         }
 
-        [WebMethod]
+        [WebMethod(Description = "Search an employee by name or last name")]
         public List<Employee> Search(string value)
         {
             return _context.Employees.Where(x => x.Name.Contains(value) || x.LastName.Contains(value) || x.Address.Contains(value)).ToList();

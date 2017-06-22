@@ -33,7 +33,7 @@ namespace LogisuiteEmployeePresentation.Controllers
             return Client.Delete(id);
         }
 
-        public static List<Employee> SearchByName(string name)
+        public static List<Employee> Search(string name)
         {
             return Client.Search(name).ToList();
         }

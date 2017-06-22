@@ -151,7 +151,7 @@
       <wsdl:output message="tns:UpdateSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Insert">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert an employee to the data base</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert an employee into the data base</wsdl:documentation>
       <wsdl:input message="tns:InsertSoapIn" />
       <wsdl:output message="tns:InsertSoapOut" />
     </wsdl:operation>
@@ -166,6 +166,7 @@
       <wsdl:output message="tns:SelectSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Search">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search an employee by name or last name</wsdl:documentation>
       <wsdl:input message="tns:SearchSoapIn" />
       <wsdl:output message="tns:SearchSoapOut" />
     </wsdl:operation>

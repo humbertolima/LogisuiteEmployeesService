@@ -31,44 +31,40 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             IndexDataGridView.Columns[7].HeaderText = @"Social Security";
             IndexDataGridView.Columns[3].DefaultCellStyle.Format = "d MMM yyyy";
             IndexDataGridView.Columns[4].DefaultCellStyle.Format = "C";
+            
         }
 
         public void Initialize()
         {
             this.IndexDataGridView.DataSource = EmployeesController.ViewAll();
             DecorateTheGridView();
+            label3.Text = @"Total de Registros: " + IndexDataGridView.Rows.Count;
         }
         private void Index_Load(object sender, EventArgs e)
         {
             
             Initialize();
-            label3.Text = @"Total de Registros: " + IndexDataGridView.Rows.Count;
+            
         }
 
         private void IndexDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
-                var employee = new LogisuiteEmployeeService.Employee();
+                var employee = new LogisuiteEmployeeService.Employee()
+                {
 
-                var id = (int)IndexDataGridView.SelectedCells[0].Value;
-                var name = IndexDataGridView.SelectedCells[1].Value.ToString();
-                var lastName = IndexDataGridView.SelectedCells[2].Value.ToString();
-                var dateofBirth = (DateTime)IndexDataGridView.SelectedCells[3].Value;
-                var annualSalary = (decimal)IndexDataGridView.SelectedCells[4].Value;
-                var address = IndexDataGridView.SelectedCells[5].Value.ToString();
-                var phone = (long)IndexDataGridView.SelectedCells[6].Value;
-                var socialSecurity = (long)IndexDataGridView.SelectedCells[7].Value;
+                    Id = (int)IndexDataGridView.SelectedCells[0].Value,
+                    Name = IndexDataGridView.SelectedCells[1].Value.ToString(),
+                    LastName = IndexDataGridView.SelectedCells[2].Value.ToString(),
+                    DateofBirth = (DateTime)IndexDataGridView.SelectedCells[3].Value,
+                    AnnualSalary = (decimal)IndexDataGridView.SelectedCells[4].Value,
+                    Address = IndexDataGridView.SelectedCells[5].Value.ToString(),
+                    Phone = (long)IndexDataGridView.SelectedCells[6].Value,
+                    SocialSecurityNumber = (long)IndexDataGridView.SelectedCells[7].Value
+                };
 
-                employee.Id = id;
-                employee.Name = name;
-                employee.LastName = lastName;
-                employee.DateofBirth = dateofBirth;
-                employee.AnnualSalary = annualSalary;
-                employee.Address = address;
-                employee.Phone = phone;
-                employee.SocialSecurityNumber = socialSecurity;
-
+               
                 var employeeForm = new EmployeeForm(employee);
                 employeeForm.ShowDialog();
             }
@@ -92,16 +88,14 @@ namespace LogisuiteEmployeePresentation.Views.Employee
             try
             {
                 var idToDelete= (int) (IndexDataGridView.SelectedCells[0].Value);
-                if (MessageBox.Show( @"Sure you want to delete this register?", @"Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                {
-                    var result = EmployeesController.Delete(idToDelete);
-                    Index_Load(sender, e);
-                    MessageBox.Show(result == 1 
+                if (MessageBox.Show(@"Sure you want to delete this register?", @"Delete", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Warning) != DialogResult.OK) return;
+                var result = EmployeesController.Delete(idToDelete);
+                Index_Load(sender, e);
+                MessageBox.Show(result == 1 
 
-                        ? @"The register successfully deleted" 
-                        : @"The employee is not regitered");
-                }
-                
+                    ? @"The register successfully deleted" 
+                    : @"The employee is not regitered");
             }
             catch (Exception ex)
             {
@@ -128,7 +122,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            this.IndexDataGridView.DataSource = EmployeesController.SearchByName(txtSearch.Text);
+            this.IndexDataGridView.DataSource = EmployeesController.Search(txtSearch.Text);
             DecorateTheGridView();
         }
 

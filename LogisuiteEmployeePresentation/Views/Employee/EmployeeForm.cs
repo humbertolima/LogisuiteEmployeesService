@@ -95,15 +95,15 @@ namespace LogisuiteEmployeePresentation.Views.Employee
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            this.Focus();
+            
             this.Close();
             
         }
 
         private void txtDateofBirth_Validating(object sender, CancelEventArgs e)
         {
-            DateTime time;
-            var result = DateTime.TryParse(txtDateofBirth.Text, out time);
+            
+            var result = DateTime.TryParse(txtDateofBirth.Text, out DateTime time);
             if (!result)
             {
                 MessageBox.Show(@"The Date of Birth field must be a valid date type", @"Invalid Field",
@@ -122,21 +122,17 @@ namespace LogisuiteEmployeePresentation.Views.Employee
 
         private void txtAnnualSalary_Validating(object sender, CancelEventArgs e)
         {
-            decimal salary;
-            var result = decimal.TryParse(txtAnnualSalary.Text, out salary);
-            if (!result)
-            {
-                MessageBox.Show(@"The Annual Salary field must be a valid numerical type", @"Invalid Field",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAnnualSalary.Text = _employee.AnnualSalary.ToString("N");
-                txtAnnualSalary.Focus();
-            }
+            var result = decimal.TryParse(txtAnnualSalary.Text, out decimal salary);
+            if (result) return;
+            MessageBox.Show(@"The Annual Salary field must be a valid numerical type", @"Invalid Field",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            txtAnnualSalary.Text = _employee.AnnualSalary.ToString("N");
+            txtAnnualSalary.Focus();
         }
 
         private void txtPhone_Validating(object sender, CancelEventArgs e)
         {
-            long pnone;
-            var result = long.TryParse(txtPhone.Text, out pnone);
+            var result = long.TryParse(txtPhone.Text, out long pnone);
             if (!result)
             {
                 MessageBox.Show(@"The Phone Number field must be a valid numerical type", @"Invalid Field",
@@ -156,8 +152,7 @@ namespace LogisuiteEmployeePresentation.Views.Employee
 
         private void txtSocialSecurity_Validating(object sender, CancelEventArgs e)
         {
-            long social;
-            var result = long.TryParse(txtSocialSecurity.Text, out social);
+            var result = long.TryParse(txtSocialSecurity.Text, out long social);
             if (!result)
             {
                 MessageBox.Show(@"The Social Security field must be a valid numerical type", @"Invalid Field",
@@ -179,9 +174,8 @@ namespace LogisuiteEmployeePresentation.Views.Employee
         {
             try
             {
-                bool result;
-                var test = BuildEmployee();
-                MessageBox.Show(EmployeesController.Save(test, out result));
+                var employee = BuildEmployee();
+                MessageBox.Show(EmployeesController.Save(employee, out bool result));
                 if(result)
                     Close();
 
